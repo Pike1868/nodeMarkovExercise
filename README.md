@@ -39,4 +39,68 @@ For example, from that simple phrase, we could find:
 
 Markov machine:
 
+Markov.js contains the start of an object-oriented Markov machine:
+
 *markov.js*
+
+```jsx
+/** Textual markov chain generator */
+
+class MarkovMachine {
+
+  /** build markov machine; read in text.*/
+
+  constructor(text) {
+    let words = text.split(/[ \r\n]+/);
+    this.words = words.filter(c => c !== "");
+    this.makeChains();
+  }
+
+  /** set markov chains:
+   *
+   *  for text of "the cat in the hat", chains will be
+   *  {"the": ["cat", "hat"], "cat": ["in"], "in": ["the"], "hat": [null]} */
+
+  makeChains() {
+    // TODO
+  }
+
+  /** return random text from chains */
+
+  makeText(numWords = 100) {
+    // TODO
+  }
+}
+```
+
+The ***constructor*** function given some input text, splits the input text on spaces and linebreak characters to make a list of words. Now write a function that builds a map of chains of *word* → *possible-next-words*.
+
+You should be able to instantiate it like this:
+
+```jsx
+**let** mm = **new** MarkovMachine("the cat in the hat");
+```
+
+Then, whenever you want to get generated text from it:
+
+```jsx
+mm.makeText();
+
+mm.makeText(numWords=50);
+```
+
+**Test this in the Node REPL before continuing!** We’ve given you some text files to play with; you can feed these (or parts of these) into your machine to make sure it works.
+
+
+## **Step 2: Build the *makeText.js* Script**
+
+Create a script, ***makeText.js***, that works like this:
+
+```bash
+$node makeText.js file eggs.txt
+... generated text from file 'eggs.txt' ...
+
+$node makeText.js url http://www.gutenberg.org/files/11/11-0.txt
+... generated text from that URL ...
+
+```
